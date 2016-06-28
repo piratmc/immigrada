@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ImmiHUb</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'pages/menu' %>
+<div style="margin-top: 5em">
+<%= yield %>
+</div>
+<%= render 'pages/footer' %>
+
+</body>
+</html>
