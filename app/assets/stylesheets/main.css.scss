@@ -2,11 +2,12 @@
 @import "bootstrap-sprockets";
 
 .footer {
-  bottom: -50px;
-  position: relative;
+  position: fixed;
   text-align: center;
   width: 100%;
   color: darkgrey;
   font-size: small;
   background-color: #222;
+  bottom:0px;
+  height:40px;
 }
