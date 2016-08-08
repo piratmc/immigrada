@@ -1,21 +1,19 @@
 <div>
   <% if @eligible.nil? or @more_to_ask %>
-      <div style="padding: 30px;text-align: center;">
+      <div style="padding: 30px; text-align: center">
         <h2><%= @title %></h2>
         <br>
         <h3><%= @current_question_string %></h3>
-        <div style="display: inline-flex">
-          <%= form_for n400_questionnaire_path do %>
-              <div class="input-group space" style="margin-top: 0.5em; font-size: large">
-                Да <%= radio_button_tag @current_question, true %>
-                Нет <%= radio_button_tag @current_question, false %>
-              </div>
-              <div class="input-group space" style="margin-top: 3em">
-                <!--<%= submit_tag 'Назад', class: 'btn btn-success btn-lg' %>-->
-                <%= submit_tag 'Далее', class: 'btn btn-success btn-lg' %>
-              </div>
-          <% end %>
-        </div>
+        <%= form_for n400_questionnaire_path do %>
+            <div class="input-group space" style="margin-top: 1em; font-size: large; display: inline-flex">
+              <span>Да <%= radio_button_tag @current_question, true %>  </span>
+              <span style="margin-left: 3em"> Нет <%= radio_button_tag @current_question, false %> </span>
+            </div>
+            <div class="input-group space" style="margin-top: 3em; display: block ">
+              <!--<%= submit_tag 'Назад', class: 'btn btn-success btn-lg' %>-->
+              <%= submit_tag 'Далее', class: 'btn btn-success btn-lg' %>
+            </div>
+        <% end %>
       </div>
   <% else %>
       <!-- results-->
@@ -25,11 +23,11 @@
             <% if @alert %>
                 <h3 style="color: black"><%= @alert %></h3>
             <% else %>
-              <h3>Вы можете начать процесс подачи на гражданство прямо сейчас!</h3>
-              <br>
-              <%= form_for n400_questionnaire_path do %>
-                  <%= submit_tag 'Начать заполнение формы', class: 'btn btn-default btn-lg' %>
-              <% end %>
+                <h3>Вы можете начать процесс подачи на гражданство прямо сейчас!</h3>
+                <br>
+                <%= form_for n400_questionnaire_path do %>
+                    <%= submit_tag 'Начать заполнение формы', class: 'btn btn-default btn-lg' %>
+                <% end %>
             <% end %>
           </div>
       <% else %>

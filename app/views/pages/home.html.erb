@@ -1,5 +1,21 @@
-<div style="margin-left: 5em">
-  <%= link_to n400_questionnaire_path do %>
-      <% image_tag 'n400.jpg', size: '300x200' %>
-  <% end %>
+<div style="margin-left: 5em; display: inline-flex;  text-align: center; position: relative">
+
+  <span>
+  <%= label_tag 'Подача на гражданство' %>
+    <div>
+    <%= link_to n400_questionnaire_path do %>
+        <% image_tag 'n400.jpg', size: '300x200' %>
+    <% end %>
+    </div>
+  </span>
+
+  <span style="margin-left: 5em">
+    <%= label_tag 'Подача на грин карту' %>
+    <div>
+    <%= link_to '/' do %>
+        <% image_tag 'gc.jpg', size: '300x200' %>
+    <% end %>
+    </div>
+  </span>
+
 </div>

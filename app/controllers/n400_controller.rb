@@ -127,7 +127,7 @@ class N400Controller < ApplicationController
             if params[:last_3_months_in_us] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вас когда нибудь судили или арестовывали на територии США?'
+              @current_question_string = 'Вас когда нибудь судили или арестовывали на территории США?'
               @current_question = :criminal
             else
               @eligible = @more_to_ask = false
@@ -175,11 +175,25 @@ class N400Controller < ApplicationController
             if params[:good_man] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Если вы служили в Вооруженных Силах США, то дезертировали ли вы?'
-              @current_question = :deserted_from_military
+              @current_question_string = 'Служили ли вы в Вооруженных Силах США?'
+              @current_question = :been_in_military
             else
               @eligible = @more_to_ask = false
               @alert = 'Для подачи на гражданство вам необходимо быть человек с хорошими моральными качествами.'
+            end
+          end
+
+          if params[:been_in_military]
+            if params[:been_in_military] == 'true'
+              @eligible = true
+              @more_to_ask = true
+              @current_question_string = 'Дезертировали ли вы со службы в Вооруженных Силах США?'
+              @current_question = :deserted_from_military
+            else
+              @eligible = true
+              @more_to_ask = true
+              @current_question_string = 'Согласны ли вы идти на военную или гражданскую службу, если того потребует закон?'
+              @current_question = :fight_if_needed
             end
           end
 
@@ -187,7 +201,7 @@ class N400Controller < ApplicationController
             if params[:deserted_from_military] == 'false'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Если вы служили в Вооруженных Силах США, отстраняли ли вас от службы?'
+              @current_question_string = 'Отстраняли ли вас от службы в Вооруженных Силах США?'
               @current_question = :discharged_from_military
             else
               @eligible = @more_to_ask = false
