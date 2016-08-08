@@ -91,7 +91,7 @@ class N400Controller < ApplicationController
             if params[:married_to_citizen] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы пробыли за пределами США меньше 18 месяцев за последние 3 года?'
+              @current_question_string = 'Вы пробыли за пределами США менее 18 месяцев за последние 3 года?'
               @current_question = :have_not_been_out_for_18_months
             else
               @eligible = @more_to_ask = false
@@ -107,7 +107,7 @@ class N400Controller < ApplicationController
               @current_question = :one_year_trips
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть за пределами США меньше 18 месяцев за последние 3 года.'
+              @alert = 'Для подачи на гражданство вам необходимо быть за пределами США менее 18 месяцев за последние 3 года.'
             end
           end
 
