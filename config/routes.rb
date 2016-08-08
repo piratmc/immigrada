@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  match 'forms' => 'forms#show', via: [:get, :post]
   get 'articles' => 'articles#show'
-  get 'podcasts' => 'podcasts#show'
-  match 'forms/n400', via: [:get, :post]
-
-  match 'forms/n400_questionnaire', via: [:get, :post]
+  get 'video' => 'pages#video'
+  match 'n400/form', via: [:get, :post]
+  match 'n400/questionnaire', via: [:get, :post]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

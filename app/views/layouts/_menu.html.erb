@@ -13,22 +13,22 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-        <% if current_page? '/forms' %>
-            <li class="active"><%= link_to 'Forms assistance',forms_path %></li>
+        <% if current_page? '/' %>
+            <li class="active"><%= link_to 'Главная', root_path %></li>
         <% else %>
-            <li><%= link_to 'Forms assistance',forms_path %></li>
+            <li><%= link_to 'Главная', root_path %></li>
         <% end %>
 
-        <% if current_page? '/articles' %>
-            <li class="active"><%= link_to 'Articles', articles_path %></li>
-        <% else %>
-            <li><%= link_to 'Articles', articles_path %></li>
-        <% end %>
+        <!--<% if current_page? '/articles' %>-->
+            <!--<li class="active"><%= link_to 'Статьи', articles_path %></li>-->
+        <!--<% else %>-->
+            <!--<li><%= link_to 'Статьи', articles_path %></li>-->
+        <!--<% end %>-->
 
-        <% if current_page? '/podcasts' %>
-            <li class="active"><%= link_to 'Podcasts', podcasts_path %></li>
+        <% if current_page? '/video' %>
+            <li class="active"><%= link_to 'Видео', video_path %></li>
         <% else %>
-            <li><%= link_to 'Podcasts', podcasts_path %></li>
+            <li><%= link_to 'Видео', video_path %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
