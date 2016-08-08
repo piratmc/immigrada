@@ -10,6 +10,8 @@ class N400Controller < ApplicationController
 
     unless params.blank?
       case params['commit']
+        # when 'Назад'
+        #   redirect_to :back
         when 'Далее'
           if params[:age_ok]
             if params[:age_ok] == 'true'
