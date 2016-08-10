@@ -139,7 +139,7 @@ class N400Controller < ApplicationController
             if params[:english] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Можете ли вы запомнить ответы на 100 вопросов об истории и устройстве США?'
+              @current_question_string = 'Можете ли вы запомнить ответы на 100 вопросов об истории и устройстве США на английском языке?'
               @current_question = :history
             else
               @eligible = @more_to_ask = false
