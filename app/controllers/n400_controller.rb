@@ -29,7 +29,7 @@ class N400Controller < ApplicationController
             if params[:gc_5_years] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Последние 3 месяца вы находились на территории США?'
+              @current_question_string = 'Вы жили последние 3 месяца в штате из которого подаете на гражданство?'
               @current_question = :last_3_months_in_us
             else
               @eligible = true
