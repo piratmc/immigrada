@@ -29,7 +29,7 @@ class N400Controller < ApplicationController
             if params[:gc_5_years] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы жили последние 2.5 года в США?'
+              @current_question_string = 'Вы находились последние 2.5 года в США, не беря во внимание коротких заграничных поездок?'
               @current_question = :lived_30_months_in_us
             else
               @eligible = true
@@ -79,7 +79,7 @@ class N400Controller < ApplicationController
             if params[:married_for_3_years] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы жили в США последние 18 месяцев?'
+              @current_question_string = 'Вы находились последние 18 месяцев в США, не беря во внимание коротких заграничных поездок?'
               @current_question = :lived_18_months_in_us
             else
               @eligible = @more_to_ask = false
