@@ -151,23 +151,11 @@ class N400Controller < ApplicationController
             if params[:history] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы человек с хорошими моральными качествами?'
-              @current_question = :good_man
-            else
-              @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо выучить ответы на 100 вопросов по истории и устройству США'
-            end
-          end
-
-          if params[:good_man]
-            if params[:good_man] == 'true'
-              @eligible = true
-              @more_to_ask = true
               @current_question_string = 'Служили ли вы в Вооруженных Силах США?'
               @current_question = :been_in_military
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть человек с хорошими моральными качествами.'
+              @alert = 'Для подачи на гражданство вам необходимо выучить ответы на 100 вопросов по истории и устройству США'
             end
           end
 
