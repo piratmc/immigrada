@@ -79,23 +79,11 @@ class N400Controller < ApplicationController
             if params[:married_for_3_years] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Человек, на котором вы женаты, был гражданином США последние 3 года?'
-              @current_question = :married_to_citizen
-            else
-              @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть женатым на гражданине США последние 3 года или дождаться 5 лет от даты выдачи вам грин карты.'
-            end
-          end
-
-          if params[:married_to_citizen]
-            if params[:married_to_citizen] == 'true'
-              @eligible = true
-              @more_to_ask = true
               @current_question_string = 'Вы пробыли за пределами США менее 18 месяцев за последние 3 года?'
               @current_question = :have_not_been_out_for_18_months
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть женатым на человеке, который был гражданине США последние 3 года или дождаться 5 лет от даты выдачи вам грин карты.'
+              @alert = 'Для подачи на гражданство вам необходимо быть женатым на гражданине США последние 3 года или дождаться 5 лет от даты выдачи вам грин карты.'
             end
           end
 
