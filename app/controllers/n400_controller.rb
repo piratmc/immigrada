@@ -29,8 +29,8 @@ class N400Controller < ApplicationController
             if params[:gc_5_years] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы жили последние 3 месяца в штате из которого подаете на гражданство?'
-              @current_question = :last_3_months_in_us
+              @current_question_string = 'Вы жили последние 2.5 года в США?'
+              @current_question = :lived_30_months_in_us
             else
               @eligible = true
               @more_to_ask = true
@@ -79,16 +79,16 @@ class N400Controller < ApplicationController
             if params[:married_for_3_years] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы пробыли за пределами США менее 18 месяцев за последние 3 года?'
-              @current_question = :have_not_been_out_for_18_months
+              @current_question_string = 'Вы жили в США последние 18 месяцев?'
+              @current_question = :lived_18_months_in_us
             else
               @eligible = @more_to_ask = false
               @alert = 'Для подачи на гражданство вам необходимо быть женатым на гражданине США последние 3 года или дождаться 5 лет от даты выдачи вам грин карты.'
             end
           end
 
-          if params[:have_not_been_out_for_18_months]
-            if params[:have_not_been_out_for_18_months] == 'true'
+          if params[:lived_18_months_in_us]
+            if params[:lived_18_months_in_us] == 'true'
               @eligible = true
               @more_to_ask = true
               @current_question_string = 'За последние 5 лет, были ли у вас поездки за пределы США продолжитеьностью 1 год и более?'
