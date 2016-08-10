@@ -91,23 +91,11 @@ class N400Controller < ApplicationController
             if params[:lived_18_months_in_us] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'За последние 5 лет, были ли у вас поездки за пределы США продолжитеьностью 1 год и более?'
-              @current_question = :one_year_trips
-            else
-              @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть за пределами США менее 18 месяцев за последние 3 года.'
-            end
-          end
-
-          if params[:one_year_trips]
-            if params[:one_year_trips] == 'false'
-              @eligible = true
-              @more_to_ask = true
               @current_question_string = 'Вы жили в США последние 3 месяца?'
               @current_question = :last_3_months_in_us
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вы не можете иметь поездки за пределы США длительностью 1 год и более за последние 5 лет.'
+              @alert = 'Для подачи на гражданство вам необходимо быть за пределами США менее 18 месяцев за последние 3 года.'
             end
           end
 
