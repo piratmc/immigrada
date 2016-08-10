@@ -127,7 +127,7 @@ class N400Controller < ApplicationController
             if params[:criminal] == 'false'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Можете ли вы читать и писать по-английски?'
+              @current_question_string = 'Можете ли вы читать и писать по-английски на базовом уровне?'
               @current_question = :english
             else
               @eligible = @more_to_ask = false
