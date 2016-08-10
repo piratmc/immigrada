@@ -55,7 +55,7 @@ class N400Controller < ApplicationController
             if params[:gc_3_years] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы женаты и живете вместе с гражданином США?'
+              @current_question_string = 'Вы получили грин карту на основании брака с гражданином США?'
               @current_question = :married
             else
               @eligible = @more_to_ask = false
