@@ -1,7 +1,9 @@
 <div>
   <% if @eligible.nil? or @more_to_ask %>
       <div style="padding: 30px; text-align: center">
-        <h2><%= @title %></h2>
+        <% if @more_to_ask.nil? %>
+          <h2><%= @title %></h2>
+        <% end %>
         <br>
         <h3><%= @current_question_string %></h3>
         <%= form_for n400_questionnaire_path do %>
