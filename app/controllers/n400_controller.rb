@@ -17,11 +17,11 @@ class N400Controller < ApplicationController
             if params[:age_ok] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Bы имеете грин карту 5 лет и больше?'
+              @current_question_string = 'Bы имеете грин карту 5 лет или больше?'
               @current_question = :gc_5_years
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть старше 18 лет. Но, вы можете стать грагданину по упрощенноы програме. Обратитесь к нам в офис:а) если ваши родители стали гражданами до того как вам исполнилось 18 лет и у вас была грин карта; б) елси вы на данный момент служите в Вооруженных силах США.'
+              @alert = 'Для подачи на гражданство вам необходимо быть старше 18 лет. Но вы можете стать гражданином, если: а) ваши родители стали гражданами до того, как вам исполнилось 18 лет и у вас была грин карта; б) если вы в данный момент служите в вооруженных силах США. Обратитесь к нам в офис для рассмотрения вашей ситуации.'
             end
           end
 
@@ -29,12 +29,12 @@ class N400Controller < ApplicationController
             if params[:gc_5_years] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы находились последние 2.5 года в США, не беря во внимание коротких заграничных поездок?'
+              @current_question_string = 'Находились ли вы последние 2.5 года в США, не беря во внимание коротких заграничных поездок?'
               @current_question = :lived_30_months_in_us
             else
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Bы имеете грин карту 3 года и больше?'
+              @current_question_string = 'Bы имеете грин карту 3 года или больше?'
               @current_question = :gc_3_years
             end
           end
@@ -43,11 +43,11 @@ class N400Controller < ApplicationController
             if params[:lived_30_months_in_us] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Вы жили последние 3 месяца в штате из которого подаете на гражданство?'
+              @current_question_string = 'Последние 3 месяца вы жили в штате, из которого подаете на гражданство?'
               @current_question = :last_3_months_in_us
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо прожить в США как минимум два с половиной года.'
+              @alert = 'Для подачи на гражданство вам необходимо прожить в США последние два с половиной года, не беря во внимание коротких заграничных поездок.'
             end
           end
 
@@ -59,7 +59,7 @@ class N400Controller < ApplicationController
               @current_question = :married
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо иметь грин карту 3 года и больше.'
+              @alert = 'Для подачи на гражданство вам необходимо иметь грин карту 3 года, если она получена на основании брака с гражданином США, и 5 лет во всех остальных случаях.'
             end
           end
 
@@ -71,7 +71,7 @@ class N400Controller < ApplicationController
               @current_question = :married_for_3_years
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть женатым на гражданине США или дождаться 5 лет от даты выдачи вам грин карты.'
+              @alert = 'Вам необходимо обратится к нам в офиц для детального рассмотрения вашый ситуации.'
             end
           end
 
@@ -83,7 +83,7 @@ class N400Controller < ApplicationController
               @current_question = :lived_18_months_in_us
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть женатым на гражданине США последние 3 года или дождаться 5 лет от даты выдачи вам грин карты.'
+              @alert = 'Вам необходимо обратится к нам в офис для детального рассмотрения вашей ситуации.'
             end
           end
 
@@ -95,7 +95,7 @@ class N400Controller < ApplicationController
               @current_question = :last_3_months_in_us
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо быть за пределами США менее 18 месяцев за последние 3 года.'
+              @alert = 'Для подачи на гражданство вам необходимо прожить в США последние 18 месяцев, не беря во внимание коротких заграничных поездок.'
             end
           end
 
@@ -107,7 +107,7 @@ class N400Controller < ApplicationController
               @current_question = :criminal
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо находиться в США последние 3 месяца.'
+              @alert = 'Для подачи на гражданство вам необходимо проживать в штате, из которого вы подаете на гражданство.'
             end
           end
 
@@ -127,7 +127,7 @@ class N400Controller < ApplicationController
             if params[:english] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Можете ли вы запомнить ответы на 100 вопросов об истории и устройстве США на английском языке?'
+              @current_question_string = 'Можете ли вы запомнить и быть готобым ответить на 100 вопросов об истории и устройстве США на английском языке?'
               @current_question = :history
             else
               @eligible = @more_to_ask = false
@@ -143,7 +143,7 @@ class N400Controller < ApplicationController
               @current_question = :been_in_military
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо выучить ответы на 100 вопросов по истории и устройству США'
+              @alert = 'Для подачи на гражданство вам необходимо выучиты и быть готобым ответить на 100 вопросов по истории и устройству США на английском языке.'
             end
           end
 
@@ -151,7 +151,7 @@ class N400Controller < ApplicationController
             if params[:been_in_military] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Дезертировали ли вы со службы в Вооруженных Силах США?'
+              @current_question_string = 'Дезертировали ли вы со службы в вооруженных силах США?'
               @current_question = :deserted_from_military
             else
               @eligible = true
@@ -165,7 +165,7 @@ class N400Controller < ApplicationController
             if params[:deserted_from_military] == 'false'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Отстраняли ли вас от службы в Вооруженных Силах США?'
+              @current_question_string = 'Отстраняли ли вас от службы в вооруженных силах США?'
               @current_question = :discharged_from_military
             else
               @eligible = @more_to_ask = false
@@ -206,19 +206,6 @@ class N400Controller < ApplicationController
               @alert = 'Вам необходимо обратиться к нам в офис для детального рассмотрения вашей ситуации.'
             end
           end
-
-          # if params[:us_parents_before_18]
-          #   if params[:us_parents_before_18] == 'true'
-          #     @eligible = true
-          #     @more_to_ask = false
-          #     @alert = 'Вам необходимо обратиться к нам в офис т.к. в вашем случае вы можете получить гражданство автоматически.'
-          #     @current_question = @current_question_string = nil
-          #   else
-          #     @eligible = true
-          #     @title = nil
-          #     @more_to_ask = false
-          #   end
-          # end
         when 'Начать заполнение формы'
           redirect_to n400_form_path
       end
