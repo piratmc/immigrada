@@ -127,7 +127,7 @@ class N400Controller < ApplicationController
             if params[:english] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Можете ли вы запомнить и быть готобым ответить на 100 вопросов об истории и устройстве США на английском языке?'
+              @current_question_string = 'Можете ли вы запомнить и быть готовым ответить на 100 вопросов об истории и устройстве США на английском языке?'
               @current_question = :history
             else
               @eligible = @more_to_ask = false
@@ -151,7 +151,7 @@ class N400Controller < ApplicationController
             if params[:been_in_military] == 'true'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Дезертировали ли вы со службы в вооруженных силах США?'
+              @current_question_string = 'Дезертировали ли вы со службы в Вооруженных Силах США?'
               @current_question = :deserted_from_military
             else
               @eligible = true
@@ -165,7 +165,7 @@ class N400Controller < ApplicationController
             if params[:deserted_from_military] == 'false'
               @eligible = true
               @more_to_ask = true
-              @current_question_string = 'Отстраняли ли вас от службы в вооруженных силах США?'
+              @current_question_string = 'Отстраняли ли вас от службы в Вооруженных Силах США?'
               @current_question = :discharged_from_military
             else
               @eligible = @more_to_ask = false
