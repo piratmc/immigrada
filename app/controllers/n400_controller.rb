@@ -47,7 +47,7 @@ class N400Controller < ApplicationController
               @current_question = :last_3_months_in_us
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо прожить в США последние два с половиной года, не беря во внимание коротких заграничных поездок.'
+              @alert = 'Вам необходимо обратится к нам в офис для детального рассмотрения вашей ситуации.'
             end
           end
 
@@ -71,7 +71,7 @@ class N400Controller < ApplicationController
               @current_question = :married_for_3_years
             else
               @eligible = @more_to_ask = false
-              @alert = 'Вам необходимо обратится к нам в офиц для детального рассмотрения вашый ситуации.'
+              @alert = 'Вам необходимо дождаться 5 лет со времени получения вами грин карты.'
             end
           end
 
@@ -95,7 +95,7 @@ class N400Controller < ApplicationController
               @current_question = :last_3_months_in_us
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо прожить в США последние 18 месяцев, не беря во внимание коротких заграничных поездок.'
+              @alert = 'Вам необходимо обратится к нам в офис для детального рассмотрения вашей ситуации.'
             end
           end
 
@@ -107,7 +107,7 @@ class N400Controller < ApplicationController
               @current_question = :criminal
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо проживать в штате, из которого вы подаете на гражданство.'
+              @alert = 'Для подачи на гражданство вам необходимо проживать последние 3 месяца в штате, из которого вы подаете на гражданство.'
             end
           end
 
@@ -131,7 +131,7 @@ class N400Controller < ApplicationController
               @current_question = :history
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо иметь базовый английский.'
+              @alert = 'Для подачи на гражданство вам необходимо уметь читать и писать на базовом английском.'
             end
           end
 
@@ -143,7 +143,7 @@ class N400Controller < ApplicationController
               @current_question = :been_in_military
             else
               @eligible = @more_to_ask = false
-              @alert = 'Для подачи на гражданство вам необходимо выучиты и быть готобым ответить на 100 вопросов по истории и устройству США на английском языке.'
+              @alert = 'Для подачи на гражданство вам необходимо выучить и быть готовым ответить на 100 вопросов по истории и устройству США на английском языке.'
             end
           end
 
