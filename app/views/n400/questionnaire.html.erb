@@ -3,7 +3,7 @@
 
       <div class="progress">
         <div class="progress-bar progress-bar-info" role="progressbar" style="width: <%= @percent %>% ; min-width: 2em">
-          <span> <%= @percent %>%</span>
+          <span> <%= @percent.round(0) %>%</span>
         </div>
       </div>
 
@@ -12,7 +12,7 @@
             <h2><%= @title %></h2>
         <% end %>
         <br>
-        <h3><%= @current_question_string %></h3>
+        <h3><%= $questions[@current_question] %></h3>
         <% if @info_link %>
             <%= link_to @info_link_title, @info_link, :target => '_blank' %>
         <% end %>
