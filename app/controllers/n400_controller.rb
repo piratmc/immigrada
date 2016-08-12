@@ -1,12 +1,17 @@
 class N400Controller < ApplicationController
   require 'pdf-forms'
 
+  
+
+
   def questionnaire
     @eligible = nil
     @form_completed = nil
     @title = 'Проверим, можете те ли вы подать на гражданство США:'
     @current_question_string = 'Вам больше 18 лет?'
     @current_question = :age_ok
+    @info_link = nil
+    @percent = 0
 
     unless params.blank?
       case params['commit']
@@ -19,6 +24,7 @@ class N400Controller < ApplicationController
               @more_to_ask = true
               @current_question_string = 'Bы имеете грин карту 5 лет или больше?'
               @current_question = :gc_5_years
+              @percent = 10
             else
               @eligible = @more_to_ask = false
               @alert = 'Для подачи на гражданство вам необходимо быть старше 18 лет. Но вы можете стать гражданином, если: а) ваши родители стали гражданами до того, как вам исполнилось 18 лет и у вас была грин карта; б) если вы в данный момент служите в вооруженных силах США. Обратитесь к нам в офис для рассмотрения вашей ситуации.'
@@ -129,6 +135,8 @@ class N400Controller < ApplicationController
               @more_to_ask = true
               @current_question_string = 'Можете ли вы запомнить и быть готовым ответить на 100 вопросов об истории и устройстве США на английском языке?'
               @current_question = :history
+              @info_link_title = 'Ссылка на вопросы'
+              @info_link = 'https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf'
             else
               @eligible = @more_to_ask = false
               @alert = 'Для подачи на гражданство вам необходимо уметь читать и писать на базовом английском.'
