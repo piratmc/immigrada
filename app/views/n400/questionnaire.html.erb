@@ -7,11 +7,12 @@
         </div>
       </div>
 
-      <div style="text-align: center">
+      <div style="text-align: center; margin-top: 4em">
         <% if @more_to_ask.nil? %>
             <h2><%= @title %></h2>
+            <br>
         <% end %>
-        <br>
+
         <h3><%= $questions[@current_question] %></h3>
         <% if @info_link %>
             <%= link_to @info_link_title, @info_link, :target => '_blank' %>
