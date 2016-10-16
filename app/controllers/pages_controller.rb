@@ -5,4 +5,7 @@ class PagesController < ApplicationController
   def video
   end
 
+  def trainer
+  end
+
 end

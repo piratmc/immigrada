@@ -1,26 +1,104 @@
 class N400Controller < ApplicationController
   require 'pdf-forms'
 
+  $questionnaire = Hash.new
+  $questionnaire[:over_18] = 'Вам больше 18 лет?'
+  $questionnaire[:gc_5_years] = 'Bы имеете грин карту 5 лет или больше?'
+  $questionnaire[:gc_3_years] = 'Bы имеете грин карту 3 года или больше?'
+  $questionnaire[:lived_30_months_in_us] = 'Находились ли вы последние 2.5 года в США, не беря во внимание коротких заграничных поездок?'
+  $questionnaire[:last_3_months_in_us] = 'Последние 3 месяца вы жили в штате, из которого подаете на гражданство?'
+  $questionnaire[:married] = 'Вы получили грин карту на основании брака с гражданином США?'
+  $questionnaire[:married_for_3_years] = 'Вы женаты на этом человеке последние 3 года?'
+  $questionnaire[:lived_18_months_in_us] = 'Вы находились последние 18 месяцев в США, не беря во внимание коротких заграничных поездок?'
+  $questionnaire[:criminal] = 'Вас когда нибудь судили или арестовывали на территории США?'
+  $questionnaire[:english] = 'Можете ли вы читать и писать по-английски на базовом уровне?'
+  $questionnaire[:history] = 'Можете ли вы запомнить и быть готовым ответить на 100 вопросов об истории и устройстве США на английском языке?'
+  $questionnaire[:been_in_military] = 'Служили ли вы в Вооруженных Силах США?'
+  $questionnaire[:deserted_from_military] = 'Дезертировали ли вы со службы в Вооруженных Силах США?'
+  $questionnaire[:discharged_from_military] = 'Отстраняли ли вас от службы в Вооруженных Силах США?'
+  $questionnaire[:fight_if_needed] = 'Согласны ли вы идти на военную или гражданскую службу, если того потребует закон?'
+  $questionnaire[:support_constitution] = 'Поддерживаете ли вы конституцию США?'
 
-  $questions = Hash.new
-  $questions[:over_18] = 'Вам больше 18 лет?'
-  $questions[:gc_5_years] = 'Bы имеете грин карту 5 лет или больше?'
-  $questions[:gc_3_years] = 'Bы имеете грин карту 3 года или больше?'
-  $questions[:lived_30_months_in_us] = 'Находились ли вы последние 2.5 года в США, не беря во внимание коротких заграничных поездок?'
-  $questions[:last_3_months_in_us] = 'Последние 3 месяца вы жили в штате, из которого подаете на гражданство?'
-  $questions[:married] = 'Вы получили грин карту на основании брака с гражданином США?'
-  $questions[:married_for_3_years] = 'Вы женаты на этом человеке последние 3 года?'
-  $questions[:lived_18_months_in_us] = 'Вы находились последние 18 месяцев в США, не беря во внимание коротких заграничных поездок?'
-  $questions[:criminal] = 'Вас когда нибудь судили или арестовывали на территории США?'
-  $questions[:english] = 'Можете ли вы читать и писать по-английски на базовом уровне?'
-  $questions[:history] = 'Можете ли вы запомнить и быть готовым ответить на 100 вопросов об истории и устройстве США на английском языке?'
-  $questions[:been_in_military] = 'Служили ли вы в Вооруженных Силах США?'
-  $questions[:deserted_from_military] = 'Дезертировали ли вы со службы в Вооруженных Силах США?'
-  $questions[:discharged_from_military] = 'Отстраняли ли вас от службы в Вооруженных Силах США?'
-  $questions[:fight_if_needed] = 'Согласны ли вы идти на военную или гражданскую службу, если того потребует закон?'
-  $questions[:support_constitution] = 'Поддерживаете ли вы конституцию США?'
+  $questions = ['What is a supreme law of the land?',
+                'What does the Constitution do?',
+                'The idea of self-government is in the first three words of the Constitution. What are these words?',
+                'What is an amendment?',
+                'What do we call first ten amendments to the Constitution?',
+                'What is <i><u>one</u></i> right or freedom from the First Amendment?',
+                'How many amendments does the Constitution have?',
+                'What did the Declaration of Independence do?',
+                'What are <i><u>two</u></i> rights in the Declaration of Independence?',
+                'What is freedom of religion?',
+                'What is the economic system in the United States?',
+                'What is the "rule of law"?',
+                'Name <i><u>one</u></i> branch or part of the government.',
+                'What stops one branch of government from becoming too powerful?'
+
+  ]
+
+  $answers = Hash.new
+  $answers[$questions[0]] = 'the Constitution'
+  $answers[$questions[1]] = ['sets up the government', 'defines the government', 'protects basic rights of Americans']
+  $answers[$questions[2]] = 'We the People'
+  $answers[$questions[3]] = ['a change', 'an addition']
+  $answers[$questions[4]] = 'the Bill of Rights'
+  $answers[$questions[5]] = ['speech', 'religion', 'assembly', 'press', 'petition the government']
+  $answers[$questions[6]] = 'twenty seven'
+  $answers[$questions[7]] = ['announced our independence', 'declared out independence', 'said that the United States is free']
+  $answers[$questions[8]] = ['life', 'liberty', 'pursuit of happiness']
+  $answers[$questions[9]] = 'you can practice any religion, or not practice a religion'
+  $answers[$questions[10]] = ['capitalist economy', 'market economy']
+  $answers[$questions[11]] = ['everyone must follow the law', 'leaders must obey the law', 'government must obey the law',
+                              'no one is above the law']
+  $answers[$questions[12]] = ['Congress', 'legislative', 'President', 'executive', 'the courts', 'judicial']
+  $answers[$questions[13]] = ['checks and balances', 'separation of powers']
 
 
+
+  def trainer
+    @title = 'Проверим, как хорошо вы готовы к тесту на гражданство'
+    @intro = true
+    @index = @percent = 0
+    @current_question = $questions[0]
+    @correct_answer = $answers[$questions[@index]]
+
+    unless params.blank?
+      case params['commit']
+        # when 'Назад'
+        #   redirect_to :back
+        when 'Ответить'
+          index = params[:index].to_i
+          correct_answer = $answers[$questions[index]]
+
+          if $answers[$questions[index]].class == Array
+            user_answer_array = params[:answer].split(', ')
+
+            if user_answer_array.all? {|answer| correct_answer.include?(answer)}
+              @index = index + 1
+              @percent = @index * 10
+            else
+              @index = index
+              @percent = @index * 10
+              @wrong_answer = true
+            end
+          else
+            if params[:answer] == correct_answer
+              @index = index + 1
+              @percent = @index * 10
+            else
+              @index = index
+              @percent = @index * 10
+              @wrong_answer = true
+            end
+          end
+          @correct_answer = $answers[$questions[@index]]
+          @correct_answer = @correct_answer.map {|each| each.to_s}.join(', ') if @correct_answer.class == Array
+          @current_question = $questions[@index]
+          @intro = false
+      end
+    end
+
+  end
 
   def questionnaire
     @eligible = nil
