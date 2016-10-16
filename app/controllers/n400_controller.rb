@@ -68,7 +68,32 @@ class N400Controller < ApplicationController
                 'What is the name of the Speaker of the House of Representatives now?',
                 "There are four amendments to the Constitution about who can vote.\nDescribe <i><u>one</u></i> of them.",
                 'What is <i><u>one</u></i> responsibility that is only for United States citizens?',
-                'Name <i><u>one</u></i> right only for United States citizens.'
+                'Name <i><u>one</u></i> right only for United States citizens.',
+                'What are <i><u>two</u></i> rights of everyone living in the United States?',
+                'What do we show loyalty to when we say the Pledge of Allegiance?',
+                'What is <i><u>one</u></i> promise you make when you become a United States citizen?',
+                'How old do citizens have to be to vote for President?',
+                'What are <i><u>two</u></i> ways that Americans can participate in their democracy?',
+                'When is the last day you can send in federal income tax forms?',
+                'When must all men register for Selective Service?',
+                'What is <i><u>one</u></i> reason colonists came to America?',
+                'Who lived in America before the Europeans arrived?',
+                'What group of people was taken to America and sold as slaves?',
+                'Why did the colonists fight the British?',
+                'Who wrote the Declaration of Independence?',
+                'When was the Declaration of Independence adopted?',
+                "There were 13 original states.\nName <i><u>three</u></i>.",
+                'What happened at the Constitutional Convention?',
+                'When was the Constitution written?',
+                "The Federalist Papers supported the passage of the U.S. Constitution.\nName <i><u>one</u></i> of the writers",
+                'What is <i><u>one</u></i> thing Benjamin Franklin is famous for?',
+                'Who is the \"Father of Our Country\"?',
+                'Who was the first President?',
+                'What territory did the United States buy from France in 1803?',
+                'Name <i><u>one</u></i> war fought by United States in the 1800s.',
+                'Name the U.S. war between the North and the South.',
+                'Name <i><u>one</u></i> problem that led to Civil War.',
+                
   ]
 
   $answers = ['the Constitution',
@@ -273,7 +298,38 @@ class N400Controller < ApplicationController
               ['Paul D. Ryan', 'Paul Ryan', 'Ryan'],
               ['citizens eighteen and older', 'you don\'t have to pay to vote', 'any citizen can vote', 'a male citizen of any race'],
               ['serve on a jury', 'vote in a federal election'],
-              ['vote in a federal election', 'run for federal office']
+              ['vote in a federal election', 'run for federal office'],
+              ['freedom of expression', 'freedom of speech', 'freedom of assembly', 'freedom to petition the government',
+               'freedom of religion', 'the right to bear arms'],
+              ['the United States', 'the flag'],
+              ['give up loyalty to other countries', 'defend the Constitution and laws of the United States',
+               'obey the laws of the United States', 'serve in U.S. military (if needed)', 'serve (do important work for) the nation (if needed)',
+               'be loyal to the United States'],
+              'eighteen and older',
+              ['vote', 'join a political party', 'help with a campaign', 'join a civic group', 'join a community group',
+               'give an elected official your opinion on an issue', 'call Senators and Representatives',
+               'publicly support or oppose an issue or policy', 'run for office', 'right to a newspaper'],
+              'April 15',
+              ['at age eighteen', 'between eighteen and twenty six'],
+              ['freedom', 'political liberty', 'religious freedom', 'economic opportunity', 'practice their religion', 'escape persecution'],
+              ['American Indians', 'Native Americans'],
+              ['Africans', 'people from Africa'],
+              ['because of high taxes', 'because the British army stayed in their houses', 'because they didn\'t have self-government'],
+              'Thomas Jefferson',
+              'July 4, 1776',
+              ['New Hampshire', 'Massachusetts', 'Rhode Island', 'Connecticut', 'New York', 'New Jersey ', 'Pennsylvania',
+               'Delaware', 'Maryland', 'Virginia', 'North Carolina', 'South Carolina', 'Georgia'],
+              ['the Constitution was written', 'the Founding Fathers wrote the Constitution'],
+              '1787',
+              ['James Madison', 'Alexander Hamilton', 'John Jay', 'Publius'],
+              ['US diplomat', 'oldest member of the constitutional convention', 'first Postmaster General on the United States',
+                'writer of Poor Richard\'s Almanac', 'started the first free libraries'],
+              'George Washington',
+              'George Washington',
+              ['the Louisiana Territory', 'Louisiana'],
+              ['War of 1812', 'Mexican-American War', 'Civil War', 'Spanish-American War'],
+              ['the Civil War', 'the War between the States'],
+              ['slavery', 'economic reasons', 'states\' rights'],
   ]
 
   def next_question_index(asked_array)
@@ -286,7 +342,8 @@ class N400Controller < ApplicationController
   end
 
   def trainer
-    unless params['commit'].blank?
+    if params['commit'] == 'Ответить' or params['commit'] == 'Пропустить'
+
       @asked = params[:asked].gsub('[', '').gsub(']', '').split(' ').collect { |each| each.to_i }
       @answered = params[:answered].to_i
 
@@ -319,8 +376,6 @@ class N400Controller < ApplicationController
           @asked.pop
           @index = next_question_index(@asked)
           @asked << @index
-        when 'Начать новый тест'
-          redirect_to n400_trainer_path
       end
       @correct_answer = $answers[@index]
       @correct_answer = @correct_answer.map { |each| each.to_s }.join(', ') if @correct_answer.class == Array
