@@ -32,72 +32,216 @@ class N400Controller < ApplicationController
                 'What is the economic system in the United States?',
                 'What is the "rule of law"?',
                 'Name <i><u>one</u></i> branch or part of the government.',
-                'What stops one branch of government from becoming too powerful?'
+                'What stops one branch of government from becoming too powerful?',
+                'Who is in charge of the executive branch?',
+                'Who makes the federal laws?',
+                'What are the <i><u>two</u></i> parts of the U.S. Congress?',
+                'How many U.S. Senators are there?',
+                'We elect a U.S. Senator for how many years?',
+                'Who is <i><u>one</u></i> of your state\'s U.S. Senators now?',
+                'The House of Representatives has how many voting members?',
+                'We elect a U.S. Representative for how many years?',
+                'Name your U.S. Representative.',
+                'Who does a U.S. Senator represent?',
+                'Why do some states have more Representatives than other states?',
+                'We elect President for how many years?',
+                'In what month do we vote for President?',
+                'What is a name of the President of the United States now?',
+                'What is the name of the Vice President of the United States now?',
+                'If the President can no longer serve, who becomes President?',
+                'If the President and the Vice President can no longer serve, who becomes President?',
+                'Who is the Commander in  Chief of the military?',
+                'Who signs bills to become laws?',
+                'Who vetoes bills?',
+                'What does the President\'s Cabinet do?',
+                'What are <i><u>two</u></i> Cabinet-level positions?'
 
   ]
 
-  $answers = Hash.new
-  $answers[$questions[0]] = 'the Constitution'
-  $answers[$questions[1]] = ['sets up the government', 'defines the government', 'protects basic rights of Americans']
-  $answers[$questions[2]] = 'We the People'
-  $answers[$questions[3]] = ['a change', 'an addition']
-  $answers[$questions[4]] = 'the Bill of Rights'
-  $answers[$questions[5]] = ['speech', 'religion', 'assembly', 'press', 'petition the government']
-  $answers[$questions[6]] = 'twenty seven'
-  $answers[$questions[7]] = ['announced our independence', 'declared out independence', 'said that the United States is free']
-  $answers[$questions[8]] = ['life', 'liberty', 'pursuit of happiness']
-  $answers[$questions[9]] = 'you can practice any religion, or not practice a religion'
-  $answers[$questions[10]] = ['capitalist economy', 'market economy']
-  $answers[$questions[11]] = ['everyone must follow the law', 'leaders must obey the law', 'government must obey the law',
-                              'no one is above the law']
-  $answers[$questions[12]] = ['Congress', 'legislative', 'President', 'executive', 'the courts', 'judicial']
-  $answers[$questions[13]] = ['checks and balances', 'separation of powers']
-
-
+  $answers = ['the Constitution',
+              ['sets up the government', 'defines the government', 'protects basic rights of Americans'],
+              'We the People',
+              ['a change', 'an addition'],
+              'the Bill of Rights',
+              ['speech', 'religion', 'assembly', 'press', 'petition the government'],
+              'twenty seven',
+              ['announced our independence', 'declared out independence', 'said that the United States is free'],
+              ['life', 'liberty', 'pursuit of happiness'],
+              'you can practice any religion, or not practice a religion',
+              ['capitalist economy', 'market economy'],
+              ['everyone must follow the law', 'leaders must obey the law', 'government must obey the law',
+               'no one is above the law'],
+              ['Congress', 'legislative', 'President', 'executive', 'the courts', 'judicial'],
+              ['checks and balances', 'separation of powers'],
+              'the President',
+              ['Congress', 'Senate and House', 'legislature'],
+              'the Senate and the House',
+              'one hundred',
+              'six',
+              ['Alexander, Lamar - TN',
+               'Ayotte, Kelly - NH',
+               'Baldwin, Tammy - WI',
+               'Barrasso, John - WY',
+               'Bennet, Michael F. - CO',
+               'Blumenthal, Richard - CT',
+               'Blunt, Roy - MO',
+               'Booker, Cory A. - NJ',
+               'Boozman, John - AR',
+               'Boxer, Barbara - CA',
+               'Brown, Sherrod - OH',
+               'Burr, Richard - NC',
+               'Cantwell, Maria - WA',
+               'Capito, Shelley Moore - WV',
+               'Cardin, Benjamin L. - MD',
+               'Carper, Thomas R. - DE',
+               'Casey, Robert P., Jr. - PA',
+               'Cassidy, Bill - LA',
+               'Coats, Daniel - IN',
+               'Cochran, Thad - MS',
+               'Collins, Susan M. - ME',
+               'Coons, Christopher A. - DE',
+               'Corker, Bob - TN',
+               'Cornyn, John - TX',
+               'Cotton, Tom - AR',
+               'Crapo, Mike - ID',
+               'Cruz, Ted - TX',
+               'Daines, Steve - MT',
+               'Donnelly, Joe - IN',
+               'Durbin, Richard J. - IL',
+               'Enzi, Michael B. - WY',
+               'Ernst, Joni - IA',
+               'Feinstein, Dianne - CA',
+               'Fischer, Deb - NE',
+               'Flake, Jeff - AZ',
+               'Franken, Al -  MN',
+               'Gardner, Cory - CO',
+               'Gillibrand, Kirsten E. - NY',
+               'Graham, Lindsey - SC',
+               'Grassley, Chuck - IA',
+               'Hatch, Orrin G. - UT',
+               'Heinrich, Martin - NM',
+               'Heitkamp, Heidi - ND',
+               'Heller, Dean - NV',
+               'Hirono, Mazie K. - HI',
+               'Hoeven, John - ND',
+               'Inhofe, James M. - OK',
+               'Isakson, Johnny - GA',
+               'Johnson, Ron - WI',
+               'Kaine, Tim - VA',
+               'King, Angus S., Jr. - ME',
+               'Kirk, Mark - IL',
+               'Klobuchar, Amy - MN',
+               'Lankford, James - OK',
+               'Leahy, Patrick J. - VT',
+               'Lee, Mike - UT',
+               'Manchin, Joe, III - WV',
+               'Markey, Edward J. - MA',
+               'McCain, John - AZ',
+               'McCaskill, Claire - MO',
+               'McConnell, Mitch - KY',
+               'Menendez, Robert - NJ',
+               'Merkley, Jeff - OR',
+               'Mikulski, Barbara A. - MD',
+               'Moran, Jerry - KS',
+               'Murkowski, Lisa - AK',
+               'Murphy, Christopher - CT',
+               'Murray, Patty - WA',
+               'Nelson, Bill - FL',
+               'Paul, Rand - KY',
+               'Perdue, David - GA',
+               'Peters, Gary C. - MI',
+               'Portman, Rob - OH',
+               'Reed, Jack - RI',
+               'Reid, Harry - NV',
+               'Risch, James E. - ID',
+               'Roberts, Pat - KS',
+               'Rounds, Mike - SD',
+               'Rubio, Marco - FL',
+               'Sanders, Bernard - VT',
+               'Sasse, Ben - NE',
+               'Schatz, Brian - HI',
+               'Schumer, Charles E. - NY',
+               'Scott, Tim - SC',
+               'Sessions, Jeff - AL',
+               'Shaheen, Jeanne - NH',
+               'Shelby, Richard C. - AL',
+               'Stabenow, Debbie - MI',
+               'Sullivan, Daniel - AK',
+               'Tester, Jon - MT',
+               'Thune, John - SD',
+               'Tillis, Thom - NC',
+               'Toomey, Patrick J. - PA',
+               'Udall, Tom - NM',
+               'Vitter, David - LA',
+               'Warner, Mark R. - VA',
+               'Warren, Elizabeth - MA',
+               'Whitehouse, Sheldon - RI',
+               'Wicker, Roger F. - MS',
+               'Wyden, Ron - OR'],
+              'four hundred thirty-five',
+              'two',
+              ' ',
+              'all people of the state',
+              ['the state\'s population', 'they have more people', 'some states have more people' ],
+              'four',
+              'November',
+              ['Barack Obama', 'Obama'],
+              ['Joseph R. Biden, Jr.', 'Joe Biden', 'Biden'],
+              'the Vice President',
+              'the Speaker of the House',
+              'the President',
+              'the President',
+              'the President',
+              'advises the President',
+              ['Secretary of Agriculture', 'Secretary of Commerce', 'Secretary of Defence', 'Secretary of Education',
+                'Secretary of Energy', 'Secretary of Health and Human Services', 'Secretary of Homeland Security',
+                'Secretary of Housing and Urban Development', 'Secretary of the Interior', 'Secretary of Labour',
+                'Secretary of State', 'Secretary of Transportation', 'Secretary of the Treasury',
+                'Secretary of Veterans Affairs', 'Attorney General', 'Vice president']
+  ]
 
   def trainer
     @title = 'Проверим, как хорошо вы готовы к тесту на гражданство'
     @intro = true
-    @index = @percent = 0
+    @index = @answered = 0
     @current_question = $questions[0]
-    @correct_answer = $answers[$questions[@index]]
+    @correct_answer = $answers[@index]
 
     unless params.blank?
+      @index = params[:index].to_i
+      @answered = params[:answered].to_i
       case params['commit']
         # when 'Назад'
         #   redirect_to :back
         when 'Ответить'
-          index = params[:index].to_i
-          correct_answer = $answers[$questions[index]]
+          correct_answer = $answers[@index]
 
-          if $answers[$questions[index]].class == Array
+          if correct_answer.class == Array
             user_answer_array = params[:answer].split(', ')
 
-            if user_answer_array.all? {|answer| correct_answer.include?(answer)}
-              @index = index + 1
-              @percent = @index * 10
+            if user_answer_array.all? { |answer| correct_answer.include?(answer) }
+              @index += 1
+              @answered += 10
             else
-              @index = index
-              @percent = @index * 10
               @wrong_answer = true
             end
+
           else
             if params[:answer] == correct_answer
-              @index = index + 1
-              @percent = @index * 10
+              @index += 1
+              @answered += 10
             else
-              @index = index
-              @percent = @index * 10
               @wrong_answer = true
             end
           end
-          @correct_answer = $answers[$questions[@index]]
-          @correct_answer = @correct_answer.map {|each| each.to_s}.join(', ') if @correct_answer.class == Array
-          @current_question = $questions[@index]
-          @intro = false
+        when 'Пропустить'
+          @index += 1
       end
+      @correct_answer = $answers[@index]
+      @correct_answer = @correct_answer.map { |each| each.to_s }.join(', ') if @correct_answer.class == Array
+      @current_question = $questions[@index]
+      @intro = false
     end
-
   end
 
   def questionnaire

@@ -1,6 +1,6 @@
 <div class="progress" style="width: 50%; margin-left: 25%">
-  <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @percent %>% ; min-width: 2em">
-    <span> <%= @percent.round(0) %>%</span>
+  <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @answered %>% ; min-width: 2em">
+    <span> <%= @answered %>%</span>
   </div>
 </div>
 
@@ -23,15 +23,17 @@
         <div class="col-xs-10" style="width: 50%; margin-left: 25%">
           <%= text_field_tag :answer, nil, class: 'form-control' %>
           <%= hidden_field_tag :index, @index %>
+          <%= hidden_field_tag :answered, @answered %>
         </div>
       </div>
       <div class="input-group space" style="margin-top: 3em; display: block ">
-        <%= submit_tag 'Ответить', class: 'btn btn-success btn-lg' %>
+        <%= submit_tag 'Ответить', class: 'btn btn-info btn-lg' %>
+        <%= submit_tag 'Пропустить', class: 'btn btn-default btn-lg' %>
       </div>
 
   <% end %>
 </div>
-<%= button_tag 'Подсказка', class: 'btn btn-danger btn-sm', id: 'dont_know' %>
+<%= button_tag 'Ответ', class: 'btn btn-danger btn-sm', id: 'dont_know' %>
 <div id="correct_answer" style="display: none; margin-top: 3em">
   <div class="well message" style="border-width: 0px">
     <p>Правильный ответ: <%= @correct_answer %></p>
