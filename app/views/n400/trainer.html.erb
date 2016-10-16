@@ -16,7 +16,7 @@
       <br>
   <% end %>
 
-  <h3><%= @current_question.html_safe %></h3>
+  <h3><%= simple_format @current_question.html_safe %></h3>
 
   <%= form_for n400_trainer_path do %>
       <div class="form-group row" style="">
