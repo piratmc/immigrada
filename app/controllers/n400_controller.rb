@@ -276,47 +276,66 @@ class N400Controller < ApplicationController
               ['vote in a federal election', 'run for federal office']
   ]
 
-  def trainer
-    @title = 'Проверим, как хорошо вы готовы к тесту на гражданство'
-    @intro = true
-    @index = @answered = 0
-    @current_question = $questions[0]
-    @correct_answer = $answers[@index]
+  def next_question_index(asked_array)
+    index = rand(0...$questions.length)
+    while asked_array.include?(index)
+      index = rand(0...$questions.length)
+    end
 
-    unless params.blank?
-      @index = params[:index].to_i
+    return index
+  end
+
+  def trainer
+    unless params['commit'].blank?
+      @asked = params[:asked].gsub('[', '').gsub(']', '').split(' ').collect { |each| each.to_i }
       @answered = params[:answered].to_i
+
       case params['commit']
-        # when 'Назад'
-        #   redirect_to :back
         when 'Ответить'
+          @index = params[:index].to_i
           correct_answer = $answers[@index]
 
           if correct_answer.class == Array
             user_answer_array = params[:answer].split(', ')
 
             if user_answer_array.all? { |answer| correct_answer.include?(answer) }
-              @index += 1
-              @answered += 10
+              @index = next_question_index(@asked)
+              @asked << @index
+              @answered += 1
             else
               @wrong_answer = true
             end
 
           else
             if params[:answer] == correct_answer
-              @index += 1
-              @answered += 10
+              @index = next_question_index(@asked)
+              @asked << @index
+              @answered += 1
             else
               @wrong_answer = true
             end
           end
         when 'Пропустить'
-          @index += 1
+          @asked.pop
+          @index = next_question_index(@asked)
+          @asked << @index
+        when 'Начать новый тест'
+          redirect_to n400_trainer_path
       end
       @correct_answer = $answers[@index]
       @correct_answer = @correct_answer.map { |each| each.to_s }.join(', ') if @correct_answer.class == Array
       @current_question = $questions[@index]
       @intro = false
+      @answered.nil? ? @percent = 0 : @percent = @answered * 10
+    else
+      @title = 'Проверим, как хорошо вы готовы к тесту на гражданство'
+      @intro = true
+      @asked = []
+      @answered = @percent= 0
+      @index = next_question_index(@asked)
+      @asked << @index
+      @current_question = $questions[@index]
+      @correct_answer = $answers[@index]
     end
   end
 

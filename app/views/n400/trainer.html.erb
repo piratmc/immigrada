@@ -1,48 +1,60 @@
-<div class="progress" style="width: 50%; margin-left: 25%">
-  <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @answered %>% ; min-width: 2em">
-    <span> <%= @answered %>%</span>
-  </div>
-</div>
-
-<div style="text-align: center; margin-top: 4em">
-  <% if @intro %>
-      <h2><%= @title %></h2>
-      <br>
-  <% end %>
-
-  <% if @wrong_answer %>
-      <h2 style="color: red; font-weight: bold">Не правильный ответ!</h2>
-      <h4 style="color: #666666">Повторите попытку</h4>
-      <br>
-  <% end %>
-
-  <h3><%= simple_format @current_question.html_safe %></h3>
-
-  <%= form_for n400_trainer_path do %>
-      <div class="form-group row" style="">
-        <div class="col-xs-10" style="width: 50%; margin-left: 25%">
-          <%= text_field_tag :answer, nil, class: 'form-control' %>
-          <%= hidden_field_tag :index, @index %>
-          <%= hidden_field_tag :answered, @answered %>
-        </div>
+<% if @answered == 10 %>
+    <div style="text-align: center; margin-top: 10em; color: green">
+      <h2>Вы успешно прошли симулявию теста на гражданство</h2>
+      <%= form_for n400_trainer_path do %>
+          <div class="input-group space" style="margin-top: 3em; display: block ">
+            <%= submit_tag 'Начать новый тест', class: 'btn btn-default btn-lg' %>
+          </div>
+      <% end %>
+    </div>
+<% else %>
+    <div class="progress" style="width: 50%; margin-left: 25%">
+      <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @percent %>% ; min-width: 2em">
+        <span> <%= @percent %>%</span>
       </div>
-      <div class="input-group space" style="margin-top: 3em; display: block ">
-        <%= submit_tag 'Ответить', class: 'btn btn-info btn-lg' %>
-        <%= submit_tag 'Пропустить', class: 'btn btn-default btn-lg' %>
-      </div>
+    </div>
 
-  <% end %>
-</div>
-<%= button_tag 'Ответ', class: 'btn btn-danger btn-sm', id: 'dont_know' %>
-<div id="correct_answer" style="display: none; margin-top: 3em">
-  <div class="well message" style="border-width: 0px">
-    <p>Правильный ответ: <%= @correct_answer %></p>
-  </div>
-</div>
+    <div style="text-align: center; margin-top: 4em">
+      <% if @intro %>
+          <h2><%= @title %></h2>
+          <br>
+      <% end %>
+
+      <% if @wrong_answer %>
+          <h2 style="color: red; font-weight: bold">Не правильный ответ!</h2>
+          <h4 style="color: #666666">Повторите попытку</h4>
+          <br>
+      <% end %>
+
+      <h3><%= simple_format @current_question.html_safe %></h3>
+
+      <%= form_for n400_trainer_path do %>
+          <div class="form-group row" style="">
+            <div class="col-xs-10" style="width: 50%; margin-left: 25%">
+              <%= text_field_tag :answer, nil, class: 'form-control' %>
+              <%= hidden_field_tag :index, @index %>
+              <%= hidden_field_tag :answered, @answered %>
+              <%= hidden_field_tag :asked, @asked %>
+            </div>
+          </div>
+          <div class="input-group space" style="margin-top: 3em; display: block ">
+            <%= submit_tag 'Ответить', class: 'btn btn-info btn-lg' %>
+            <%= submit_tag 'Пропустить', class: 'btn btn-default btn-lg' %>
+          </div>
+
+      <% end %>
+    </div>
+    <%= button_tag 'Ответ', class: 'btn btn-danger btn-sm', id: 'dont_know' %>
+    <div id="correct_answer" style="display: none; margin-top: 3em">
+      <div class="well message" style="border-width: 0px">
+        <p>Правильный ответ: <%= @correct_answer %></p>
+      </div>
+    </div>
+<% end %>
 
 <script>
-  $(function(){
-    $('#dont_know').hover(function() {
+  $(function () {
+    $('#dont_know').hover(function () {
       $('#correct_answer').toggle();
     })
   })
