@@ -291,7 +291,7 @@ class N400Controller < ApplicationController
               'eighteen and older',
               ['vote', 'join a political party', 'help with a campaign', 'join a civic group', 'join a community group',
                'give an elected official your opinion on an issue', 'call Senators and Representatives',
-               'publicly support or oppose an issue or policy', 'run for office', 'right to a newspaper'],
+               'publicly support or oppose an issue or policy', 'run for office', 'wright to a newspaper'],
               'April 15',
               ['at age eighteen', 'between eighteen and twenty six'],
               ['freedom', 'political liberty', 'religious freedom', 'economic opportunity', 'practice their religion', 'escape persecution'],
