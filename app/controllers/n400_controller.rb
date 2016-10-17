@@ -87,7 +87,7 @@ class N400Controller < ApplicationController
                 'When was the Constitution written?',
                 "The Federalist Papers supported the passage of the U.S. Constitution.\nName <i><u>one</u></i> of the writers",
                 'What is <i><u>one</u></i> thing Benjamin Franklin is famous for?',
-                'Who is the \"Father of Our Country\"?',
+                'Who is the "Father of Our Country"?',
                 'Who was the first President?',
                 'What territory did the United States buy from France in 1803?',
                 'Name <i><u>one</u></i> war fought by United States in the 1800s.',
