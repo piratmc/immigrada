@@ -363,7 +363,7 @@ class N400Controller < ApplicationController
               'Woodrow Wilson',
               'Franklin Roosevelt',
               'Japan, Germany, Italy',
-              'Second Ward War',
+              'Second World War',
               'Communism',
               'civil rights',
               ['fought for civil rights', 'worked for equality for all Americans'],
