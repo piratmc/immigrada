@@ -243,7 +243,7 @@ class N400Controller < ApplicationController
               ['First World War', 'Second World War', 'Korean War', 'Vietnam War', 'Golf War'],
               'Woodrow Wilson',
               'Franklin Roosevelt',
-              'Japan, Germany, Italy',
+              %w(Japan Germany Italy),
               'Second World War',
               'Communism',
               'civil rights',
