@@ -347,7 +347,7 @@ class N400Controller < ApplicationController
               ['the Constitution was written', 'the Founding Fathers wrote the Constitution'],
               '1787',
               ['James Madison', 'Alexander Hamilton', 'John Jay', 'Publius'],
-              ['US diplomat', 'oldest member of the constitutional convention', 'first Postmaster General on the United States',
+              ['U.S. diplomat', 'oldest member of the constitutional convention', 'first Postmaster General on the United States',
                'writer of Poor Richard\'s Almanac', 'started the first free libraries'],
               'George Washington',
               'George Washington',
@@ -430,9 +430,9 @@ class N400Controller < ApplicationController
           @index = next_question_index(@asked)
           @asked << @index
       end
+      @current_question = $questions[@index]
       @correct_answer = $answers[@index]
       @correct_answer = @correct_answer.map { |each| each.to_s }.join(', ') if @correct_answer.class == Array
-      @current_question = $questions[@index]
       @intro = false
       @answered.nil? ? @percent = 0 : @percent = @answered * 10
     else
@@ -444,6 +444,7 @@ class N400Controller < ApplicationController
       @asked << @index
       @current_question = $questions[@index]
       @correct_answer = $answers[@index]
+      @correct_answer = @correct_answer.map { |each| each.to_s }.join(', ') if @correct_answer.class == Array
     end
   end
 
