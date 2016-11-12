@@ -1,21 +1,90 @@
-<div style="margin-left: 5em; display: inline-flex;  text-align: center; position: relative">
+<!--<video poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" playsinline autoplay muted loop>-->
+  <!--&lt;!&ndash; WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  &ndash;&gt;-->
+  <!--<source src="http://thenewcode.com/assets/videos/polina.webm" type="video/webm">-->
+  <!--<source src="http://thenewcode.com/assets/videos/polina.mp4" type="video/mp4">-->
+<!--</video>-->
 
-  <!--<span>-->
-  <!--<%= label_tag 'Подача на гражданство' %>-->
+
+
+<div style="margin: 3em; font-size: 14px;">
+  Этот ресурс создан для того что бы помочь всем, кто хочет переехать в США. Всем кто уже
+  находится в США и пытается найти варианты для получения или изменения легального статуса для себя и близких.
+  <br>Те кто уже начали интересоваться на тему иммиграции в США быстро понимают, что достоверной, полной и бесплатной
+  информации от квалифицированого проффесионала в интернете попросту не найти. Форумы полны не точной и устаревшей
+  информацией,
+  популизируя слухи и легенды о способах иммиграции.
+  <br>
+  Создав immigrada.com мы попытались заполнить этот пробел.
+  <br>
+  <br>
+  На нашем сайте вы можете:
+</div>
+
+<div style="margin-left: 10em; margin-top: -2em;position: relative; font-size: 14px">
+  <div>
+    <%= label_tag 'Посмотреть видео на различные иммиграционные темы' %>
+    <span class="btn">
+      <%= link_to 'перейти', video_path, class: 'btn  btn-sm btn-success' %>
+    </span>
+  </div>
+
+  <div>
+    <%= label_tag 'Проверить есть ли у вас возможность получить гражданство США' %>
+    <span class="btn">
+      <%= link_to 'перейти', n400_questionnaire_path, class: 'btn btn-sm btn-success' %>
+    </span>
+  </div>
+
+  <div>
+    <%= label_tag 'Подготовиться к тесту на гражданство США' %>
+    <span class="btn">
+      <%= link_to 'перейти', n400_trainer_path, class: 'btn  btn-sm btn-success' %>
+    </span>
     <!--<div>-->
-    <!--<%= link_to n400_questionnaire_path do %>-->
-        <!--<% image_tag 'n400.jpg', size: '150x100' %>-->
-    <!--<% end %>-->
+    <!--<%= link_to n400_trainer_path do %>-->
+        <!--
+        <% image_tag 'n400.jpg', size: '150x100' %>-->
+        <!--
+    <% end %>-->
     <!--</div>-->
-  <!--</span>-->
+  </div>
 
   <!--<span style="margin-left: 5em">-->
-    <!--<%= label_tag 'Подача на грин карту' %>-->
-    <!--<div>-->
-    <!--<%= link_to '/' do %>-->
-        <!--<% image_tag 'gc.jpg', size: '300x200' %>-->
-    <!--<% end %>-->
-    <!--</div>-->
+  <!--<%= label_tag 'Подача на грин карту' %>-->
+  <!--<div>-->
+  <!--<%= link_to '/' do %>-->
+      <!--
+      <% image_tag 'gc.jpg', size: '300x200' %>-->
+      <!--
+  <% end %>-->
+  <!--</div>-->
   <!--</span>-->
-
 </div>
+
+<script>
+//  var vid = document.getElementById("bgvid");
+//  var pauseButton = document.querySelector("#polina button");
+//
+//  function vidFade() {
+//    vid.classList.add("stopfade");
+//  }
+//
+//  vid.addEventListener('ended', function () {
+//// only functional if "loop" is removed
+//    vid.pause();
+//// to capture IE10
+//    vidFade();
+//  });
+//
+//
+//  pauseButton.addEventListener("click", function () {
+//    vid.classList.toggle("stopfade");
+//    if (vid.paused) {
+//      vid.play();
+//      pauseButton.innerHTML = "Pause";
+//    } else {
+//      vid.pause();
+//      pauseButton.innerHTML = "Paused";
+//    }
+//  })
+</script>

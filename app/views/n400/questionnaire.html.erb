@@ -37,11 +37,16 @@
             <% if @alert %>
                 <h3 style="color: black"><%= @alert %></h3>
             <% else %>
-                <h3>Вы можете начать процесс подачи на гражданство прямо сейчас!</h3>
+                <h4>Мы можем начать процесс подачи на гражданство уже сегодня!</h4>
                 <br>
-                <%= form_for n400_questionnaire_path do %>
-                    <%= submit_tag 'Начать заполнение формы', class: 'btn btn-default btn-lg' %>
-                <% end %>
+                <h4>Свяжитесь с нами для уточнения всех деталей: </h4>
+                <div style="color: black; font-size: larger">
+                  email: <%= mail_to 'contact@immigrada.com' %> <br>
+                  телефон: +1 (206) 623-0118
+                </div>
+                <!--<%= form_for n400_questionnaire_path do %>-->
+                    <!--<%= submit_tag 'Начать заполнение формы', class: 'btn btn-default btn-lg' %>-->
+                <!--<% end %>-->
             <% end %>
           </div>
       <% else %>

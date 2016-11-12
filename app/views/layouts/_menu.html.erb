@@ -13,16 +13,22 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-        <!--<% if current_page? '/' %>-->
-            <!--<li class="active"><%= link_to 'Главная', root_path %></li>-->
-        <!--<% else %>-->
-            <!--<li><%= link_to 'Главная', root_path %></li>-->
-        <!--<% end %>-->
-
-        <% if current_page? '/trainer' %>
-            <li class="active"><%= link_to 'Тренер', trainer_path %></li>
+        <% if current_page? '/' %>
+            <li class="active"><%= link_to 'Главная', root_path %></li>
         <% else %>
-            <li><%= link_to 'Тренер', trainer_path %></li>
+            <li><%= link_to 'Главная', root_path %></li>
+        <% end %>
+
+        <% if current_page? '/citizenship' %>
+            <li class="active"><%= link_to 'Гражданство', citizenship_path %></li>
+        <% else %>
+            <li><%= link_to 'Гражданство', citizenship_path %></li>
+        <% end %>
+
+        <% if request.url.include? 'trainer'  %>
+            <li class="active"><%= link_to 'Тренер', n400_trainer_path %></li>
+        <% else %>
+            <li><%= link_to 'Тренер', n400_trainer_path %></li>
         <% end %>
 
         <!--<% if current_page? '/articles' %>-->

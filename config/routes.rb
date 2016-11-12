@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'pages#trainer'
+  root 'pages#home'
+  get 'citizenship' => 'pages#citizenship'
   get 'trainer' => 'pages#trainer'
   get 'articles' => 'articles#show'
   get 'video' => 'pages#video'

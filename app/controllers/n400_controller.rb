@@ -141,29 +141,7 @@ class N400Controller < ApplicationController
               'the Senate and the House',
               'one hundred',
               'six',
-              ['Lamar Alexander - TN', 'Kelly Ayotte - NH', 'Tammy Baldwin - WI', 'John Barrasso - WY',
-               'Michael F. Bennet - CO', 'Richard Blumenthal - CT', 'Roy Blunt - MO', 'Cory A. Booker - NJ',
-               'John Boozman - AR', 'Barbara Boxer - CA', 'Sherrod Brown - OH', 'Richard Burr - NC',
-               'Maria Cantwell - WA', 'Shelley Moore Capito - WV', 'Benjamin L. Cardin - MD', 'Thomas R. Carper - DE',
-               'Robert P. Casey, Jr. - PA', 'Bill Cassidy - LA', 'Daniel Coats - IN', 'Thad Cochran - MS',
-               'Susan M. Collins - ME', 'Christopher A. Coons - DE', 'Bob Corker - TN', 'John Cornyn - TX',
-               'Tom Cotton - AR', 'Mike Crapo - ID', 'Ted Cruz - TX', 'Steve Daines - MT', 'Joe Donnelly - IN',
-               'Richard J. Durbin- IL', 'Michael B. Enzi - WY', 'Joni Ernst - IA', 'Dianne Feinstein - CA',
-               'Deb Fischer - NE', 'Jeff Flake - AZ', 'Al Franken - MN', 'Cory Gardner - CO', 'Kirsten E. Gillibrand - NY',
-               'Graham, Lindsey - SC', 'Grassley, Chuck - IA', 'Hatch, Orrin G. - UT', 'Heinrich, Martin - NM',
-               'Heidi Heitkamp - ND', 'Dean Heller - NV', 'Mazie K. Hirono - HI', 'John Hoeven - ND',
-               'James M. Inhofe - OK', 'Johnny Isakson - GA', 'Ron Johnson - WI', 'Tim Kaine - VA', 'Angus S. King, Jr. - ME',
-               'Mark Kirk - IL', 'Amy Klobuchar - MN', 'James Lankford - OK', 'Patrick J. Leahy - VT', 'Mike Lee - UT',
-               'Joe Manchin III - WV', 'Edward J. Markey - MA', 'John McCain - AZ', 'Claire McCaskill - MO',
-               'Mitch McConnell - KY', 'Robert Menendez - NJ', 'Jeff Merkley - OR', 'Barbara A. Mikulski - MD',
-               'Jerry Moran - KS', 'Lisa Murkowski - AK', 'Christopher Murphy - CT', 'Patty Murray - WA',
-               'Bill Nelson - FL', 'Rand Paul - KY', 'David Perdue - GA', 'Gary C. Peters - MI', 'Rob Portman - OH',
-               'Jack Reed - RI', 'Harry Reid - NV', 'James E. Risch - ID', 'Pat Roberts - KS', 'Mike Rounds - SD',
-               'Marco Rubio - FL', 'Bernard Sanders - VT', 'Ben Sasse - NE', 'Brian Schatz - HI', 'Charles E. Schumer - NY',
-               'Tim Scott - SC', 'Jeff Sessions - AL', 'Jeanne Shaheen - NH', 'Richard C. Shelby - AL', 'Debbie Stabenow- MI',
-               'Daniel Sullivan - AK', 'Jon Tester - MT', 'John Thune - SD', 'Thom Tillis - NC', 'Patrick J. Toomey - PA',
-               'Tom Udall - NM', 'David Vitter - LA', 'Mark R. Warner - VA', 'Elizabeth Warren - MA', 'Sheldon Whitehouse - RI',
-               'Roger F. Wicker - MS', 'Ron Wyden - OR'],
+              'вам нужно поискать ответ в интернете',
               'four hundred thirty five',
               'two',
               'вам нужно поискать ответ в интернете',
@@ -171,8 +149,8 @@ class N400Controller < ApplicationController
               ['the state\'s population', 'they have more people', 'some states have more people'],
               'four',
               'November',
-              ['Barack Obama', 'Obama'],
-              ['Joseph R. Biden, Jr.', 'Joe Biden', 'Biden'],
+              ['Donald Trump', 'Trump'],
+              ['Mike Pence', 'Pence'],
               'the Vice President',
               'the Speaker of the House',
               'the President',
@@ -201,7 +179,7 @@ class N400Controller < ApplicationController
                'Charleston WV', 'Madison	WI', 'Cheyenne WY'],
               'Democratic and Republican',
               'Democratic',
-              ['Paul D. Ryan', 'Paul Ryan', 'Ryan'],
+              'вам нужно поискать ответ в интернете',
               ['citizens eighteen and older', 'you don\'t have to pay to vote', 'any citizen can vote', 'a male citizen of any race'],
               ['serve on a jury', 'vote in a federal election'],
               ['vote in a federal election', 'run for federal office'],
@@ -289,7 +267,7 @@ class N400Controller < ApplicationController
           if correct_answer.class == Array
             user_answer_array = params[:answer].split(', ')
 
-            if user_answer_array.all? { |answer| correct_answer.include?(answer) }
+            if user_answer_array.all? { |answer| correct_answer.map(&:downcase).include?(answer.strip.downcase) }
               @index = next_question_index(@asked)
               @asked << @index
               @answered += 1
@@ -298,7 +276,7 @@ class N400Controller < ApplicationController
             end
 
           else
-            if params[:answer] == correct_answer
+            if params[:answer].downcase == correct_answer.strip.downcase
               @index = next_question_index(@asked)
               @asked << @index
               @answered += 1

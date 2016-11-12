@@ -2,10 +2,12 @@ class PagesController < ApplicationController
   def home
   end
 
-  def video
+  def citizenship
   end
 
   def trainer
   end
 
+  def video
+  end
 end
