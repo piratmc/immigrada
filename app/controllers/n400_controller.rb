@@ -310,7 +310,7 @@ class N400Controller < ApplicationController
   def questionnaire
     @eligible = nil
     @form_completed = nil
-    @title = 'Проверим, можете те ли вы подать на гражданство США:'
+    @title = 'Проверим, есть ли у вас возможность получить гражданство США'
     @current_question = :over_18
     @info_link = nil
     @percent = 0
