@@ -178,7 +178,7 @@ class N400Controller < ApplicationController
                'Nashville', 'Austin', 'Salt Lake City', 'Montpelier', 'Richmond', 'Olympia',
                'Charleston', 'Madison', 'Cheyenne'],
               'Democratic and Republican',
-              'Democratic',
+              'Republican',
               'вам нужно поискать ответ в интернете',
               ['citizens eighteen and older', 'you don\'t have to pay to vote', 'any citizen can vote', 'a male citizen of any race'],
               ['serve on a jury', 'vote in a federal election'],
@@ -237,7 +237,7 @@ class N400Controller < ApplicationController
               'Washington, D.C.',
               ['New York', 'Liberty Island'],
               ['because there were thirteen original colonies', 'because the stripes represent the original colonies'],
-              ['because there is one star for each state', 'because each star represents estate', 'because there are fifty states'],
+              ['because there is one star for each state', 'because each star represents a state', 'because there are fifty states'],
               'the Star-Spangled Banner',
               'July 4',
               ['New Year\'s Day', 'Martin Luther King Jr. Day', 'Presidents\' Day', 'Memorial Day',
@@ -249,8 +249,6 @@ class N400Controller < ApplicationController
     while asked_array.include?(index)
       index = rand(0...$questions.length)
     end
-
-    return index
   end
 
   def sterilize(data)
