@@ -47,7 +47,8 @@
     <%= button_tag 'Ответ', class: 'btn btn-danger btn-sm', id: 'dont_know' %>
     <div id="correct_answer" style="display: none; margin-top: 3em">
       <div class="well message" style="border-width: 0px">
-        <p>Правильный ответ: <%= @correct_answer %></p>
+        <p><b>Правильный ответ</b>: <%= @correct_answer %></p>
+        <p> <span style="color: cadetblue">Инфо</span>: при оценке ответа капитализация не берется во внимание, также игнорируется начальный 'the' фразы. В ответах с перечислением фразы следует разделать ", " (запятая с пробелом).</p>
       </div>
     </div>
 <% end %>

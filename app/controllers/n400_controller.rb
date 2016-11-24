@@ -253,6 +253,14 @@ class N400Controller < ApplicationController
     return index
   end
 
+  def sterilize(data)
+    if data.class == Array
+      data.collect { |answer| answer.strip.downcase.sub(/^the /, '').gsub(' ', '') }
+    else
+      data.strip.downcase.sub(/^the /, '').gsub(' ', '')
+    end
+  end
+
   def trainer
     if params['commit'] == 'Ответить' or params['commit'] == 'Пропустить'
 
@@ -262,12 +270,12 @@ class N400Controller < ApplicationController
       case params['commit']
         when 'Ответить'
           @index = params[:index].to_i
-          correct_answer = $answers[@index]
+          correct_answer = sterilize($answers[@index])
 
           if correct_answer.class == Array
-            user_answer_array = params[:answer].split(', ')
+            user_answer_array = sterilize(params[:answer].split(', '))
 
-            if user_answer_array.all? { |answer| correct_answer.map(&:downcase).include?(answer.strip.downcase) }
+            if user_answer_array.all? { |answer| correct_answer.include?(answer) }
               @index = next_question_index(@asked)
               @asked << @index
               @answered += 1
@@ -276,7 +284,9 @@ class N400Controller < ApplicationController
             end
 
           else
-            if params[:answer].downcase == correct_answer.strip.downcase
+            user_answer = sterilize(params[:answer])
+
+            if user_answer == correct_answer
               @index = next_question_index(@asked)
               @asked << @index
               @answered += 1
