@@ -249,6 +249,8 @@ class N400Controller < ApplicationController
     while asked_array.include?(index)
       index = rand(0...$questions.length)
     end
+
+    return index
   end
 
   def sterilize(data)
