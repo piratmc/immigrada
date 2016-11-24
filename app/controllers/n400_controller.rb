@@ -234,7 +234,7 @@ class N400Controller < ApplicationController
               ['Puerto Rico', 'U.S. Virgin Islands', 'American Samoa', 'Northam Marshall Islands', 'Guam'],
               ['Main', 'New Hampshire', 'Vermont', 'New York', 'Pennsylvania', 'Ohio', 'Michigan', 'Minnesota', 'North Dakota', 'Montana', 'Idaho', 'Washington', 'Alaska'],
               ['California', 'Arizona', 'New Mexico', 'Texas'],
-              'Washington, D.C.',
+              'Washington D.C.',
               ['New York', 'Liberty Island'],
               ['because there were thirteen original colonies', 'because the stripes represent the original colonies'],
               ['because there is one star for each state', 'because each star represents a state', 'because there are fifty states'],
