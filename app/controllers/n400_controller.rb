@@ -269,20 +269,25 @@ class N400Controller < ApplicationController
       case params['commit']
         when 'Ответить'
           correct_answer = sterilize($answers[@asked.last])
-          if correct_answer.class == Array
-            user_answer_array = sterilize(params[:answer].split(','))
-            if user_answer_array.all? { |answer| correct_answer.include?(answer) } and !user_answer_array.empty?
-              @asked = add_new_question_to_asked(@asked, @skipped)
+
+          if correct_answer != 'вамнужнопоискатьответвинтернете'
+            if correct_answer.class == Array
+              user_answer_array = sterilize(params[:answer].split(','))
+              if user_answer_array.all? { |answer| correct_answer.include?(answer) } and !user_answer_array.empty?
+                @asked = add_new_question_to_asked(@asked, @skipped)
+              else
+                @wrong_answer = true
+              end
             else
-              @wrong_answer = true
+              user_answer = sterilize(params[:answer])
+              if user_answer == correct_answer
+                @asked = add_new_question_to_asked(@asked, @skipped)
+              else
+                @wrong_answer = true
+              end
             end
           else
-            user_answer = sterilize(params[:answer])
-            if user_answer == correct_answer
-              @asked = add_new_question_to_asked(@asked, @skipped)
-            else
-              @wrong_answer = true
-            end
+            @asked = add_new_question_to_asked(@asked, @skipped)
           end
         when 'Пропустить'
           @skipped << @asked.last
