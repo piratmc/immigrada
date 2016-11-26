@@ -1,4 +1,4 @@
-<% if @answered == 10 %>
+<% if @percent == 100 %>
     <div style="text-align: center; margin-top: 10em; color: green">
       <h2>Вы успешно прошли симуляцию теста на гражданство</h2>
       <%= form_for n400_trainer_path do %>
@@ -31,10 +31,9 @@
       <%= form_for n400_trainer_path do %>
           <div class="form-group row" style="">
             <div class="col-xs-10" style="width: 50%; margin-left: 25%">
-              <%= text_field_tag :answer, nil, class: 'form-control' %>
-              <%= hidden_field_tag :index, @index %>
-              <%= hidden_field_tag :answered, @answered %>
+              <%= text_field_tag :answer, nil, class: 'form-control', autofocus: true %>
               <%= hidden_field_tag :asked, @asked %>
+              <%= hidden_field_tag :skipped, @skipped %>
             </div>
           </div>
           <div class="input-group space" style="margin-top: 3em; display: block ">
@@ -48,7 +47,7 @@
     <div id="correct_answer" style="display: none; margin-top: 3em">
       <div class="well message" style="border-width: 0px">
         <p><b>Правильный ответ</b>: <%= @correct_answer %></p>
-        <p> <span style="color: cadetblue">Инфо</span>: при оценке ответа капитализация не берется во внимание, также игнорируется начальный 'the' фразы. В ответах с перечислением фразы следует разделать ", " (запятая с пробелом).</p>
+        <p> <span style="color: cadetblue">Инфо</span>: при оценке ответа капитализация не берется во внимание, также игнорируется начальный 'the' фразы. В ответах с перечислением фразы следует разделать запятой.</p>
       </div>
     </div>
 <% end %>

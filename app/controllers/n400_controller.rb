@@ -1,5 +1,5 @@
 class N400Controller < ApplicationController
-  require 'pdf-forms'
+  # require 'pdf-forms'
 
   $questionnaire = Hash.new
   $questionnaire[:over_18] = 'Вам больше 18 лет?'
@@ -35,7 +35,7 @@ class N400Controller < ApplicationController
                 'What stops one branch of government from becoming too powerful?',
                 'Who is in charge of the executive branch?',
                 'Who makes the federal laws?',
-                'What are the <i><u>two</u></i> parts of the U.S. Congress?',
+                'What are the two parts of the U.S. Congress?',
                 'How many U.S. Senators are there?',
                 'We elect a U.S. Senator for how many years?',
                 'Who is <i><u>one</u></i> of your state\'s U.S. Senators now?',
@@ -244,13 +244,13 @@ class N400Controller < ApplicationController
                'Independence Day', 'Labor Day', 'Columbus Day', 'Veterans Day', 'Thanksgiving', 'Christmas']
   ]
 
-  def next_question_index(asked_array)
+  def add_new_question_to_asked(asked_array, skipped_array)
     index = rand(0...$questions.length)
-    while asked_array.include?(index)
+    while asked_array.include?(index) or skipped_array.include?(index)
       index = rand(0...$questions.length)
     end
 
-    return index
+    asked_array << index
   end
 
   def sterilize(data)
@@ -263,57 +263,47 @@ class N400Controller < ApplicationController
 
   def trainer
     if params['commit'] == 'Ответить' or params['commit'] == 'Пропустить'
-
       @asked = params[:asked].gsub('[', '').gsub(']', '').split(' ').collect { |each| each.to_i }
-      @answered = params[:answered].to_i
+      @skipped = params[:skipped].gsub('[', '').gsub(']', '').split(' ').collect { |each| each.to_i }
 
       case params['commit']
         when 'Ответить'
-          @index = params[:index].to_i
-          correct_answer = sterilize($answers[@index])
-
+          correct_answer = sterilize($answers[@asked.last])
           if correct_answer.class == Array
-            user_answer_array = sterilize(params[:answer].split(', '))
-
-            if user_answer_array.all? { |answer| correct_answer.include?(answer) }
-              @index = next_question_index(@asked)
-              @asked << @index
-              @answered += 1
+            user_answer_array = sterilize(params[:answer].split(','))
+            if user_answer_array.all? { |answer| correct_answer.include?(answer) } and !user_answer_array.empty?
+              @asked = add_new_question_to_asked(@asked, @skipped)
             else
               @wrong_answer = true
             end
-
           else
             user_answer = sterilize(params[:answer])
-
             if user_answer == correct_answer
-              @index = next_question_index(@asked)
-              @asked << @index
-              @answered += 1
+              @asked = add_new_question_to_asked(@asked, @skipped)
             else
               @wrong_answer = true
             end
           end
         when 'Пропустить'
+          @skipped << @asked.last
           @asked.pop
-          @index = next_question_index(@asked)
-          @asked << @index
+          @asked = add_new_question_to_asked(@asked, @skipped)
       end
-      @current_question = $questions[@index]
-      @correct_answer = $answers[@index]
+      @current_question = $questions[@asked.last]
+      @correct_answer = $answers[@asked.last]
       @correct_answer = @correct_answer.map { |each| each.to_s }.join(', ') if @correct_answer.class == Array
       @intro = false
-      @answered.nil? ? @percent = 0 : @percent = @answered * 10
+      @asked.length == 1 ? @percent = 0 : @percent = (@asked.length - 1) * 10
     else
       @title = 'Проверим, как хорошо вы готовы к тесту на гражданство'
       @intro = true
-      @asked = []
-      @answered = @percent= 0
-      @index = next_question_index(@asked)
-      @asked << @index
-      @current_question = $questions[@index]
-      @correct_answer = $answers[@index]
+      @percent = 0
+      index = rand(0...$questions.length)
+      @current_question = $questions[index]
+      @correct_answer = $answers[index]
       @correct_answer = @correct_answer.map { |each| each.to_s }.join(', ') if @correct_answer.class == Array
+      @asked = [index]
+      @skipped = []
     end
   end
 
