@@ -291,6 +291,7 @@ class N400Controller < ApplicationController
           end
         when 'Пропустить'
           @skipped << @asked.last
+          @skipped.clear if @skipped.length + @asked.length == $questions.length
           @asked.pop
           @asked = add_new_question_to_asked(@asked, @skipped)
       end
@@ -542,4 +543,5 @@ class N400Controller < ApplicationController
       end
     end
   end
+
 end
