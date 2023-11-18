@@ -5,11 +5,12 @@ gem 'bootstrap-sass'
 # gem 'pdf-forms'
 gem 'rollbar'
 gem 'rails_12factor'
-gem 'rails'
+gem 'rails', '7.1.1'
 gem 'pg'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+# gem 'psych', '< 4'
+gem 'sass-rails'
+# gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'puma'
@@ -32,7 +33,7 @@ gem 'puma'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
