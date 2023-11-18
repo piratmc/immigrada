@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# ruby '2.3.1'
+ruby '3.1.0'
 gem 'bootstrap-sass'
 # gem 'pdf-forms'
 gem 'rollbar'
