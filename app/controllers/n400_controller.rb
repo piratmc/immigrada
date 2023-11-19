@@ -263,7 +263,7 @@ class N400Controller < ApplicationController
         when 'Submit'
           correct_answer = sterilize($answers[@asked.last])
 
-          if correct_answer != 'вамнужнопоискатьответвинтернете'
+          if correct_answer != 'lookforcurrentansweronline'
             if correct_answer.class == Array
               user_answer_array = sterilize(params[:answer].split(','))
               if user_answer_array.all? { |answer| correct_answer.include?(answer) } and !user_answer_array.empty?
