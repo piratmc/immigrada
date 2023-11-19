@@ -267,7 +267,7 @@ class N400Controller < ApplicationController
       @skipped = params[:skipped].gsub('[', '').gsub(']', '').split(' ').collect { |each| each.to_i }
 
       case params['commit']
-        when 'Ответить'
+        when 'Submit'
           correct_answer = sterilize($answers[@asked.last])
 
           if correct_answer != 'вамнужнопоискатьответвинтернете'
@@ -289,7 +289,7 @@ class N400Controller < ApplicationController
           else
             @asked = add_new_question_to_asked(@asked, @skipped)
           end
-        when 'Пропустить'
+        when 'Skip'
           @skipped << @asked.last
           @skipped.clear if @skipped.length + @asked.length == $questions.length
           @asked.pop
