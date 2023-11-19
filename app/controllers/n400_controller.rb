@@ -262,7 +262,7 @@ class N400Controller < ApplicationController
   end
 
   def trainer
-    if params['commit'] == 'Ответить' or params['commit'] == 'Пропустить'
+    if params['commit'] == 'Submit' or params['commit'] == 'Skip'
       @asked = params[:asked].gsub('[', '').gsub(']', '').split(' ').collect { |each| each.to_i }
       @skipped = params[:skipped].gsub('[', '').gsub(']', '').split(' ').collect { |each| each.to_i }
 
@@ -301,7 +301,7 @@ class N400Controller < ApplicationController
       @intro = false
       @asked.length == 1 ? @percent = 0 : @percent = (@asked.length - 1) * 10
     else
-      @title = 'Проверим, как хорошо вы готовы к тесту на гражданство'
+      @title = 'Lets test you knowledge for naturalization exam'
       @intro = true
       @percent = 0
       index = rand(0...$questions.length)
