@@ -194,7 +194,6 @@ GEM
       psych (>= 4.0.0)
     reline (0.4.0)
       io-console (~> 0.5)
-    rollbar (3.4.1)
     ruby2_keywords (0.0.5)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -247,7 +246,6 @@ DEPENDENCIES
   puma
   rails (= 7.1.1)
   rails_12factor
-  rollbar
   sass-rails
   spring
   turbolinks
