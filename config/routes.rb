@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  root 'pages#home'
-  get 'citizenship' => 'pages#citizenship'
-  get 'trainer' => 'pages#trainer'
-  get 'articles' => 'articles#show'
-  get 'video' => 'pages#video'
-  match 'n400/form', via: [:get, :post]
-  match 'n400/questionnaire', via: [:get, :post]
+  root 'n400#trainer'
+  # get 'citizenship' => 'pages#citizenship'
+  # get 'trainer' => 'pages#trainer'
+  # get 'articles' => 'articles#show'
+  # get 'video' => 'pages#video'
+  post '/' => 'n400#trainer'
+  # match 'n400/form', via: [:get, :post]
+  # match 'n400/questionnaire', via: [:get, :post]
   match 'n400/trainer', via: [:get, :post]
 
   # Example of regular route:

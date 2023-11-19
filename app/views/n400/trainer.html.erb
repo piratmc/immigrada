@@ -40,10 +40,10 @@
             <%= submit_tag 'Ответить', class: 'btn btn-info btn-lg' %>
             <%= submit_tag 'Пропустить', class: 'btn btn-default btn-lg' %>
           </div>
-
       <% end %>
     </div>
-    <%= button_tag 'Ответ', class: 'btn btn-danger btn-sm', id: 'dont_know' %>
+    <%= button_tag 'Hint', class: 'btn btn-danger btn-sm', id: 'hint' %>
+    
     <div id="correct_answer" style="display: none; margin-top: 3em">
       <div class="well message" style="border-width: 0px">
         <p><b>Правильный ответ</b>: <%= @correct_answer %></p>
@@ -53,9 +53,7 @@
 <% end %>
 
 <script>
-  $(function () {
-    $('#dont_know').hover(function () {
+    $('#hint').click(function () {
       $('#correct_answer').toggle();
     })
-  })
 </script>
